@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+
+    <h2>Inscription</h2>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render 'shared/devise_errors' %>
+    
+      <div class="form-group">
+        <%= f.text_field :fullname, autofocus: true, class: "form-control", placeholder: "Nom complet ( Prénom + Nom)" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Adresse e-mail" %>
+      </div>
+    
+      <div class="form-group">
+        <br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Créer un mot de passe" %>
+      </div>
+    
+      <div class="actions">
+        <%= f.submit "Inscription", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

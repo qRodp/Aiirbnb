@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <li class="sidebar-item">
+        <%= link_to 'Modifier mon profil', edit_user_registration_path, class: 'sidebar-link active' %>
+      </li>
+    </ul>
+    <br>
+    <%= link_to 'Voir mon profil', user_path(current_user.id), class: 'btn btn-default wide' %>
+  </div>
+  <div class="col-md-7 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading">Mon profil</div>
+          <div class="panel-body">
+            <div class="container">
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= render 'shared/devise_errors' %>
+              
+                <div class="form-group">
+                  <%= f.text_field :fullname, autofocus: true, class: "form-control", placeholder: "Nom complet ( Prénom + Nom)" %>
+                </div>
+              
+                <div class="form-group">
+                  <%= f.email_field :email, class: "form-control", placeholder: "Adresse e-mail" %>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="btn btn-default btn-file">
+                        Upload ma photo
+                          <%= f.file_field :avatar %>
+                      </span>
+                    </div>
+                  </div>  
+                </div>
+                
+                <div class="form-group">
+                  <%= f.text_field :phone_number, class: "form-control", placeholder: "Numéro de téléphone" %>
+                </div>
+                
+                <div class="form-group">
+                  <%= f.text_area :description, rows:5, col:25, class: "form-control", placeholder: "Ma description" %>
+                </div>
+              
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+              
+                <div class="form-group">
+                  <br />
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Nouveau mot de passe (si vous souhaitez changer de mot de passe)"  %>
+                </div>
+              
+                <div class="form-group">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirmation du mot de passe" %>
+                </div>
+              
+                <div class="actions">
+                  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>  
+          </div>    
+        </div>      
+      </div>        
+    
+  </div>
+</div>
