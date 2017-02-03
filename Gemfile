@@ -34,6 +34,7 @@ gem 'rails-i18n', '~> 4.0.0'
 
 # paperclip
 gem 'paperclip'
+gem 'paperclip-cloudinary'
 
 #toastr for notifications
 gem 'toastr-rails'

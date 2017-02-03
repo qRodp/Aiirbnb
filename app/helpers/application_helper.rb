@@ -4,5 +4,4 @@ module ApplicationHelper
         user.avatar.url
     end
 
-
 end
