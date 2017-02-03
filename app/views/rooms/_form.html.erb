@@ -6,12 +6,13 @@
         <div class="container">
             
             <%= form_for @room, html: {multipart: true} do |f| %>
+            <%= render 'shared/errors' %>
              
             <div class="row">
                     <div class="col-md-4 select">
                         <div class="form-group">
                             <label>Genre d'habitation</label>
-                            <%= f.select :home_type, [["Maison","House"], ["Appartement","Apartment"],
+                            <%= f.select :home_type, [["Maison","Maison"], ["Appartement","Appartement"],
                             ["Bed & Breakfast", "Bed & Breakfast"]], id: "home_type", 
                             prompt: "A sélectionner...", class: "form-control" %>
                         </div>
@@ -20,8 +21,8 @@
                     <div class="col-md-4 select">
                         <div class="form-group">
                             <label>Type de logement</label>
-                            <%= f.select :room_type, [["Logement entier","Entire"], ["Chambre privée","Private"],
-                            ["Chambre partagée","Shared"]],
+                            <%= f.select :room_type, [["Logement entier","Logement entier"], ["Chambre privée","Chambre privée"],
+                            ["Chambre partagée","Chambre partagée"]],
                             prompt: "A sélectionner...", class: "form-control" %>
                         </div>
                     </div>
@@ -145,10 +146,9 @@
             </div>
                 
             <div class="actions">
-                    <% if controller.action_name == 'new' %>
                       <%= f.submit "Je valide mon annonce", class: "btn btn-primary"%>
-                    <% elsif controller.action_name == 'edit' %>
-                      <%= f.submit "Mise à jour de mon annonce", class: "btn btn-primary"%><br /><br /><br />
+                    <% if controller.action_name == 'edit' %>
+                      <br /><br /><br />
                       <%= link_to "Je supprime mon annonce", room_path(@room), method: :delete, data: {confirm: "Supprimer mon annonce?"} %>
                     <% end %> 
             </div>

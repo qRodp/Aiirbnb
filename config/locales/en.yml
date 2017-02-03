@@ -19,5 +19,30 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+fr:
+  activerecord:
+    errors:
+      models:
+        room:
+          attributes:
+            price:
+            address:
+            summary:
+            listing_name:
+            bath_room:
+            bed_room:
+            accommodate:
+            room_type:
+            home_type:
+    attributes:
+        room:
+            price: "Le prix"
+            address:  "L'adresse" 
+            summary: "La description"
+            listing_name: "Le nom de l'annonce"
+            bath_room: "Le nombre de salles de bain"
+            bed_room: "Le nombre de chambres"
+            accommodate: "Le nombre de voyageurs"
+            room_type: "Le type de logement"
+            home_type: "Le genre d'habitation"
+        
