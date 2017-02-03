@@ -1,5 +1,7 @@
-  cloud_name: "hpeq287dv"
-  api_key: "535326251529392"
-  api_secret: "_r5Lq85c7RwcTnghOpwUVD6eyd0"
-
+production:
+  cloud_name: hpeq287dv
+  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
+  enhance_image_tag: true
+  static_image_support: true
 
