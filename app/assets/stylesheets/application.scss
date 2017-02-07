@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap-datepicker";
 @import "toastr";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -239,4 +238,11 @@ input[type="checkbox"]:checked:before {
   font-size: 20px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+#message {
+  color: #FF0000;
+  opacity: 0.8;
+  display: block;
+  text-align: center;
 }

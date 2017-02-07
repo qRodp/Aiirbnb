@@ -47,7 +47,6 @@ gem 'geocoder'
 
 #datepicker
 gem 'jquery-ui-rails'
-gem 'bootstrap-datepicker-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
