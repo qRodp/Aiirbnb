@@ -16,8 +16,8 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-3 text-center">
-						<%= image_tag avatar_url(@room.user), class: "img-circle avatar-large" %><br><br>
-						<%= @room.user.fullname %>
+							<%= image_tag avatar_url(@room.user), class: "img-circle avatar-large" %><br><br>
+							<%= @room.user.fullname %>
 					</div>
 
 					<div class="col-md-9">
@@ -95,6 +95,7 @@
 					</div>
 					<div class="col-md-6">
 					    <ul class="equipments">
+					    	<li class="<%= 'text-line-through' if !@room.is_kitchen %>">Cuisine</li>
     					    <li class="<%= 'text-line-through' if !@room.is_breakfast %>">Petit déjeuner, café, thé</li>
     						<li class="<%= 'text-line-through' if !@room.is_heating %>">Chauffage</li>
     						<li class="<%= 'text-line-through' if !@room.is_air %>">Climatisation</li>

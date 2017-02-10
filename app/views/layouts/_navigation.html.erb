@@ -10,11 +10,19 @@
           <%= link_to 'Aiirbnb', root_path, { :class=>"navbar-brand" } %>
         </div>
         <div id="navbar" class="navbar-collapse collapse right">
+          
+          <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
+        <div class="search">
+          <span class="fa fa-search"></span>
+          <%= text_field_tag :search, params[:search], placeholder: "Rechercher", class: "form-control" %>
+        </div>
+        <% end %>
+          
           <ul class="nav navbar-nav navbar-right">
               
               <li>
                 <%= link_to new_room_path do %>
-                <i class="fa fa-home fa-lg"></i> Devenez hôte
+                Devenez hôte
                 <% end %>
               </li>
               

@@ -1,0 +1,191 @@
+<div id="wrapper">
+    <div id="sidebar">
+        <div id="widget">
+                <script>
+                  function initMap() {
+                    <% if @arrRooms.length > 0 %>
+                        var uluru = {lat: <%= @arrRooms[0].latitude %>, lng: <%= @arrRooms[0].longitude %>};
+                        var map = new google.maps.Map(document.getElementById('widget'), {
+                          zoom: 13,
+                          center: uluru
+                    <% else %>
+                        var uluru = {lat: 48.866667, lng: 2.333333};
+                        var map = new google.maps.Map(document.getElementById('widget'), {
+                          zoom: 4,
+                          center: uluru
+                    <% end %>
+                    
+                  });
+                  <% @arrRooms.each do |room| %>
+                    var marker = new google.maps.Marker({
+                      position: {lat: <%= room.latitude %>, lng: <%= room.longitude %>},
+                      map: map,
+                      title: "<%= room.listing_name %>" 
+                    });
+                    <% end %>
+             
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBxEJ4arGwDWPyEd63iQmGxhz59FzQqz0&callback=initMap">
+                </script>
+        </div>
+    </div>
+    
+    <div id="article">
+        <div class="row">
+			<div class="col-md-12">
+				<%= search_form_for @search, url: search_path do |f| %>
+				    <div class="row">
+						<div class="col-md-3">
+							<%= text_field_tag :start_date, params[:start_date], placeholder: "Arrivée", class: "form-control" %>
+						</div>
+						<div class="col-md-3">
+							<%= text_field_tag :end_date, params[:end_date], placeholder: "Départ", class: "form-control" %>
+						</div>
+						<div class="col-md-3">
+							<%= f.text_field :price_gteq, placeholder: "Budget min", class: "form-control" %>
+						</div>
+						<div class="col-md-3">
+							<%= f.text_field :price_lteq, placeholder: "Budget max", class: "form-control" %>
+						</div>
+					</div>
+					
+					<hr>
+
+					<div class="row">
+						<div class="col-md-4">
+							<%= check_box_tag "q[room_type_eq_any][]", "Logement entier" %> Logement entier
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[room_type_eq_any][]", "Chambre privée" %> Chambre privée
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[room_type_eq_any][]", "Chambre partagée" %> Chambre partagée
+						</div>
+					</div>
+					
+					<hr>
+					
+					<div class="row">
+					    <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label> Voyageurs ?</label>
+                                <%= f.select :accommodate_gteq, [["1 voyageur",1], ["2 voyageurs",2],
+                                ["3 voyageurs", 3], ["4 voyageurs",4], ["5 voyageurs",5], ["6 voyageurs",6]], 
+                                prompt: "A sélectionner...", class: "form-control" %>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label>Chambre(s)</label>
+                                <%= f.select :bed_room_gteq, [["1 chambre",1], ["2 chambres",2],
+                                ["3 chambres", 3], ["4 chambres ou plus",4]], 
+                                prompt: "Sélectionner...", class: "form-control" %>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label>Salle(s) de bain</label>
+                                <%= f.select :bath_room_gteq, [["1 salle de bain",1], ["2 salles de bain",2],
+                                ["3 salles de bain", 3], ["4 salles de bain ou plus",4]], 
+                                prompt: "Sélectionner...", class: "form-control" %>
+                            </div>
+                        </div>
+                    </div>
+                        
+                        <hr>
+                        
+                    <div class="row">
+                        <div class="col-md-4">
+					        <%= check_box_tag "q[is_wifi_eq]", true %> Wifi
+						</div>
+						<div class="col-md-4">
+						    <%= check_box_tag "q[is_tv_eq]", true %> Télévision
+						</div>
+						<div class="col-md-4">
+						    <%= check_box_tag "q[is_closet_eq]", true %> Penderie/Commode
+						</div>
+						<div class="col-md-4">
+						    <%= check_box_tag "q[is_shampoo_eq]", true %> Shampoing
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[is_kitchen_eq]", true %> Cuisine
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[is_breakfast_eq]", true %> Petit déjeuner
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[is_heating_eq]", true %> Chauffage
+						</div>
+						<div class="col-md-4">
+							<%= check_box_tag "q[is_air_eq]", true %> Climatisation
+						</div>
+						    
+                    </div>
+                        
+                    <br>
+                    
+                    <div class="row">
+					    <%= f.submit "Rechercher", class: "btn btn-primary" %>
+					</div>
+					
+				<% end %>
+				
+				<hr>
+				
+				<div class="row">
+					<% if @arrRooms.empty? %>
+						Aucune annonce ne correspond à votre recherche.
+					<% else %>
+                	<% @arrRooms.each do |room| %>
+                		<div class="col-md-6">
+                			<div class="panel panel-default">
+                				<div class="panel-heading preview">
+                					<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %> 
+                				</div>
+                				<div class="panel-body">
+                				    <%= image_tag avatar_url(room.user), class: "img-circle avatar-small" %>
+                					<%= link_to room.listing_name, room %>
+                				</div>
+                			</div>
+                		</div>
+                	<% end %>
+					<% end %>
+                </div>
+				
+			</div>
+		</div>
+    </div>
+</div>
+
+<script>
+	$(function() {
+		$("#start_date").datepicker({
+			dateFormat: 'dd-mm-yy',
+			minDate: 0,
+			maxDate: '3m',
+			onSelect: function(selected) {
+				$('#end_date').datepicker("option", "minDate", selected);
+				$('#end_date').attr('disabled', false);
+			}
+		});
+
+		$("#end_date").datepicker({
+			dateFormat: 'dd-mm-yy',
+			minDate: 0,
+			maxDate: '3m',
+			onSelect: function(selected) {
+				$('#start_date').datepicker("option", "maxDate", selected);
+			}
+		});
+	})
+</script>
+
+<script>
+  $(document).ready(function(){
+     $("#sidebar").stick_in_parent();
+  });
+</script>

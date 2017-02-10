@@ -16,6 +16,7 @@ class CreateRooms < ActiveRecord::Migration
       t.boolean :is_breakfast
       t.boolean :is_heating
       t.boolean :is_air
+      t.boolean :is_kitchen
       t.integer :price
       t.boolean :active
       t.references :user, index: true, foreign_key: true

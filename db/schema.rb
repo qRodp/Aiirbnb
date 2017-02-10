@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207180358) do
+ActiveRecord::Schema.define(version: 20170209102545) do
 
   create_table "photos", force: :cascade do |t|
     t.integer  "room_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170207180358) do
     t.datetime "updated_at",   null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "is_kitchen"
   end
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/preview' => 'reservations#preview'
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'
+  get '/search' => 'pages#search'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
