@@ -61,8 +61,8 @@
 			
 				
 			<div class="col-md-4">
-			    <!-- Formulaire de réservation -->	
-			    <%= render 'reservations/form' %>
+			    	<!-- Formulaire de réservation -->	
+			    	<%= render 'reservations/form' %>
 			</div>
 				
 			
@@ -200,7 +200,7 @@
 	    <!-- Logements à proximité -->
 		<h3>A proximité...</h3>
 		<div class="row">
-			<% for room in @room.nearbys(5) %>
+			<% for room in @room.nearbys(2).limit(6) %>
 				
 				<div class="col-md-4">
 					<div class="panel panel-default">
@@ -232,4 +232,4 @@
 		readOnly: true,
 		score: <%= @room.average_rating %>
 	});
-</script>		
+</script>

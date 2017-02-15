@@ -51,6 +51,9 @@ gem 'jquery-ui-rails'
 #ransack
 gem 'ransack'
 
+#timeago
+gem 'rails-timeago'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
