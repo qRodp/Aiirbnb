@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
   
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+
+  
   get '/preload' => 'reservations#preload'
   get '/preview' => 'reservations#preview'
   get '/your_trips' => 'reservations#your_trips'
