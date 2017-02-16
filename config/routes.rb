@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users,
              :path => '', 
              :path_names => {:sign_in => 'login', :sign_out => 'logout', :edit => 'profile'},
-             :controllers => {:registrations => 'registrations', :confirmations => 'confirmations'}
+             :controllers => {:registrations => 'registrations', 
+                              :confirmations => 'confirmations',
+                              :omniauth_callbacks => 'omniauth_callbacks'
+                              }
   														
   resources :users, only: [:show]
   resources :rooms
