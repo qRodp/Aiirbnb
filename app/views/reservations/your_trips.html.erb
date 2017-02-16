@@ -13,7 +13,7 @@
 			</div>
 			<div class="panel-body">
 				
-				<% @trips.each do |trip| %>
+				<% @trips.order("id DESC").each do |trip| %>
 					<div class="row">
 						<div class="col-md-2">
 							Du <%= trip.start_date.strftime('%d.%m.%y') %> au 
