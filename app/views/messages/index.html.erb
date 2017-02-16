@@ -37,3 +37,7 @@
 	</div>
 
 </div>
+
+<% if Rails.env.production? %>
+	<%= subscribe_to conversation_messages_path(@conversation) %>
+<% end %>

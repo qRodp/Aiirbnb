@@ -54,6 +54,10 @@ gem 'ransack'
 #timeago
 gem 'rails-timeago'
 
+#real time messages
+gem "private_pub"
+gem "thin"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
