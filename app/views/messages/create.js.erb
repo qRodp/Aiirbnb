@@ -1,10 +1,3 @@
-<% if Rails.env.production? %>
-    <% publish_to conversation_messages_path(@conversation) do %>
-    	$('#chat').prepend("<%= j render @message %>");
-    <% end %>
-
-<% else %>
-    $('#chat').prepend("<%= j render @message %>");
-<% end %>
+$('#chat').prepend("<%= j render @message %>");
 
 $('#new_message')[0].reset();
