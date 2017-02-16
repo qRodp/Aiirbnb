@@ -15,9 +15,4 @@ class User < ActiveRecord::Base
                       :default_url => "/assets/default_image.png"            
     validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
 
-protected
-    def confirmation_required?
-      false
-    end
-
 end
