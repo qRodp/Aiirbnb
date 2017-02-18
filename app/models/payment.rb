@@ -23,7 +23,7 @@ def process_payment
     
     Stripe::Charge.create customer: customer.id,
     
-                            amount:  Payment.find_by_token(customer.token).amount*100,
+                            amount:  Reservation.last.amount*100,
                                     
                         description: 'Réservation Aiirbnb',
                                     
