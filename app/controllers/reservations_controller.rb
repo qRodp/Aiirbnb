@@ -31,8 +31,6 @@ def create
 			
 		token: params[:payment]["token"], reservation_id: @reservation.id })
 			
-		flash[:error] = "Please check registration errors" unless @payment.valid?
-			
 		begin
 			
 		@payment.process_payment
@@ -47,9 +45,9 @@ def create
 			
 		@reservation.destroy
 			
-		puts 'Payment failed'
+		puts 'Le paiement a échoué'
 			
-		redirect_to @reservation.room
+		redirect_to @reservation.room, danger: "La réservation a échoué, veuillez recommencer"
 		
 		end
 	
