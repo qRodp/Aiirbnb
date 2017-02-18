@@ -38,13 +38,11 @@ def create
 				AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
 				redirect_to @reservation.room, notice: "Votre réservation a été acceptée"
 			end
-		rescue Exception => e
-
-		flash[:error] = e.message
+		rescue Exception 
 			
 		@reservation.destroy
 			
-		puts 'Payment failed'
+		puts 'Le paiement a échoué'
 			
 		redirect_to @reservation.room, danger: "Votre carte de crédit est incorrecte, veuillez recommencer"
 		

@@ -35,7 +35,7 @@ $form = $('.cc_form');
 if (response.error) {
 
 console.log(response.error.message);
-
+$('#message').text(response.error.message);
 show_error(response.error.message);
 
 $form.find("input[type=submit]").prop("disabled", false);
@@ -64,9 +64,6 @@ return false;
 
 };
 
-var errorMessages = {
-  incorrect_number: "Le numéro de carte bleue est incorrect."
-};
 
 show_error = function (message) {
 
