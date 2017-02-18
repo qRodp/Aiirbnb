@@ -23,7 +23,7 @@ def process_payment
     
     Stripe::Charge.create customer: customer.id,
     
-                            amount: 1000,
+                            amount: Reservation.last.total,
                                     
                         description: 'Réservation Aiirbnb',
                                     
