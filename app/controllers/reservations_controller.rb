@@ -44,7 +44,7 @@ def create
 			
 		puts 'Le paiement a échoué'
 			
-		redirect_to @reservation.room, danger: "Votre carte de crédit est incorrecte, veuillez recommencer"
+		redirect_to @reservation.room
 		
 		end
 	

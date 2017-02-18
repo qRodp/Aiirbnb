@@ -33,18 +33,15 @@ var token, $form;
 
 $form = $('.cc_form');
 
-if (response.error) {
+if (response.error && response.error.type == 'card_error' ) {
 $('#stripe').show();
-    if (response.error.type == 'invalid_number' ){
-        $('#stripe').text("Numéro de CB invalide.");
-      }
     if (response.error.type == 'card_error' ){
-        $('#stripe').text("Erreur du numéro CB.");
+        $('#stripe').text("Numéro de carte bleue invalide.");
       }
 $form.find("input[type=submit]").prop("disabled", false);
 
 } else {
-
+$('#stripe').hide();
 token = response.id;
 
 $form.append($("<input type=\"hidden\" name=\"payment[token]\" />").val(token));
