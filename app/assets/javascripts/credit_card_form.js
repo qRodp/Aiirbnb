@@ -16,7 +16,8 @@ Stripe.card.createToken($form, stripeResponseHandler);
 
 } else {
 
-show_error("Failed to load credit card processing functionality. Please reload this page in your browser.")
+$('#stripe').show();
+$('#stripe').text("Erreur, rafraichissez votre page.");
 
 }
 
@@ -34,8 +35,12 @@ $form = $('.cc_form');
 
 if (response.error) {
 $('#stripe').show();
-$('#stripe').text(response.error.message);
-
+    if (response.error.type == 'invalid_number' ){
+        $('#stripe').text("Numéro de CB invalide.");
+      }
+    if (response.error.type == 'card_error' ){
+        $('#stripe').text("Erreur du numéro CB.");
+      }
 $form.find("input[type=submit]").prop("disabled", false);
 
 } else {
