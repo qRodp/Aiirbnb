@@ -59,13 +59,13 @@
 			
 			</div>
 			
-			<div class="col-md-12">
+			<div class="col-md-10">
 			
 				<div class="col-md-12">
 					<%= p.label :card_expires, "Expire fin :", data: { stripe: 'label'} %>
 				</div>
 			
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-4">
 			
 					<%= p.select :card_expires_month, options_for_select(Payment.month_options),
 			

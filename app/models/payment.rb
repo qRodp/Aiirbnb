@@ -7,7 +7,7 @@ belongs_to :user
 
 def self.month_options
 
-    Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1]}
+    Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1}", i+1]}
 
 end
 
@@ -23,7 +23,7 @@ def process_payment
     
     Stripe::Charge.create customer: customer.id,
     
-                                    amount: amount,
+                                    amount: @reservation.total,
                                     
                                     description: 'Réservation Aiirbnb',
                                     
