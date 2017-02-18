@@ -33,10 +33,8 @@ var token, $form;
 $form = $('.cc_form');
 
 if (response.error) {
-
-console.log(response.error.message);
-$('#message').text(response.error.message);
-show_error(response.error.message);
+$('#stripe').show();
+$('#stripe').text(response.error.message);
 
 $form.find("input[type=submit]").prop("disabled", false);
 
@@ -59,23 +57,6 @@ $("[data-stripe=label]").remove();
 $form.get(0).submit();
 
 }
-
-return false;
-
-};
-
-
-show_error = function (message) {
-
-if($("#flash-messages").size() < 1){
-
-$('div.container.main div:first').prepend("<div id='flash-messages'></div>")
-
-}
-
-$("#flash-messages").html('<div class="alert alert-warning"><a class="close" data-dismiss="alert">×</a><div id="flash_alert">' + message + '</div></div>');
-
-$('.alert').delay(5000).fadeOut(3000);
 
 return false;
 
