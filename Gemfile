@@ -58,6 +58,9 @@ gem 'rails-timeago'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+#stripe
+gem 'stripe'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

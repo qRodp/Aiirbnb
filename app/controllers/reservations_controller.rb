@@ -21,12 +21,43 @@ def preview
 	render json: output
 end
 
+protect_from_forgery except: [:create]
 def create
 	@reservation = current_user.reservations.create(reservation_params)
-		if @reservation.save
-			AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
-			redirect_to @reservation.room, notice: "Votre réservation a été acceptée"
+		
+	if @reservation.persisted?
+
+		@payment = Payment.new({ email: User.find(@reservation.user_id).email,
+			
+		token: params[:payment]["token"], reservation_id: @reservation.id })
+			
+		flash[:error] = "Please check registration errors" unless @payment.valid?
+			
+		begin
+			
+		@payment.process_payment
+			
+			if @payment.save
+				AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
+				redirect_to @reservation.room, notice: "Votre réservation a été acceptée"
+			end
+		rescue Exception => e
+			
+		flash[:error] = e.message
+			
+		@reservation.destroy
+			
+		puts 'Payment failed'
+			
+		redirect_to @reservation.room
+		
 		end
+	
+	else
+		redirect_to @reservation.room, danger: "La réservation a échoué"
+	end
+		
+		
 end
 
 def your_trips
@@ -46,6 +77,8 @@ private
 	end
 
 	def reservation_params
-		params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)
+		params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id, :payment)
 	end
+
+
 end
