@@ -64,6 +64,10 @@ return false;
 
 };
 
+var errorMessages = {
+  incorrect_number: "Le numéro de carte bleue est incorrect."
+};
+
 show_error = function (message) {
 
 if($("#flash-messages").size() < 1){

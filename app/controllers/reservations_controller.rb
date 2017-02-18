@@ -44,7 +44,7 @@ def create
 			
 		@reservation.destroy
 			
-		puts 'Le paiement a échoué'
+		puts 'Payment failed'
 			
 		redirect_to @reservation.room, danger: "Votre carte de crédit est incorrecte, veuillez recommencer"
 		
