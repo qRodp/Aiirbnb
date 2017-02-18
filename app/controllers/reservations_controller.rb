@@ -21,7 +21,6 @@ def preview
 	render json: output
 end
 
-protect_from_forgery except: [:create]
 def create
 	@reservation = current_user.reservations.create(reservation_params)
 		
@@ -29,7 +28,7 @@ def create
 
 		@payment = Payment.new({ email: User.find(@reservation.user_id).email,
 			
-		token: params[:payment]["token"], reservation_id: @reservation.id })
+		token: params[:payment]["token"], reservation_id: @reservation.id, amount: @reservation.total })
 			
 		begin
 			
@@ -41,13 +40,11 @@ def create
 			end
 		rescue Exception => e
 			
-		flash[:error] = e.message
-			
 		@reservation.destroy
 			
 		puts 'Le paiement a échoué'
 			
-		redirect_to @reservation.room, danger: "La réservation a échoué, veuillez recommencer"
+		redirect_to @reservation.room, danger: "Votre carte de crédit est incorrecte, veuillez recommencer"
 		
 		end
 	
