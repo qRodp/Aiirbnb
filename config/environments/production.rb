@@ -2,7 +2,6 @@ Rails.application.configure do
   
   Paperclip::Attachment.default_options.merge!({
   :storage => :cloudinary,
-  :default_url => "default_image.png", 
   :path => ':id/:style/:filename'
 })
 
