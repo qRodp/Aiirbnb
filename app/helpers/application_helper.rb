@@ -7,7 +7,7 @@ module ApplicationHelper
             if user.avatar.present?
                 user.avatar.url
             else
-                image_tag 'assets/default_image.png'
+                image_tag 'default_image.png'
             end
         end
     end
