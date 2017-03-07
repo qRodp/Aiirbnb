@@ -211,7 +211,6 @@ input[type="checkbox"]:checked:before {
 
 .panel-heading.preview img{  
   width: 100%;
-  height: 220px;
 }
 
 .equipments li {
@@ -319,4 +318,14 @@ padding:5px; /* amount of space between the text and the border of the button */
   border-color: #2b2eb2;
   background-color: #2b2ebB2;  
   outline:none;
+}
+
+.home-link a, p{
+  color: #82888a;
+  text-decoration: none;
+}
+
+.home-link:hover a, .home-link:focus a {
+  color: #82888a;
+  text-decoration: none;
 }

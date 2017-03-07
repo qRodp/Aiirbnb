@@ -31,7 +31,8 @@
 
 <div class="row">
 	<div class="col-md-4">
-			<h3>Logements :</h3>
+			<h4>Logements</h4>
+			<br>
 	</div>
 </div>
 <div class="row">
@@ -39,11 +40,16 @@
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading preview">
-					<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %> 
+					<%= link_to room_path(room) do %>
+						<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+					<% end %>
 				</div>
 				<div class="panel-body">
-				    <%= image_tag avatar_url(room.user), class: "img-circle avatar-small" %>
-					<%= link_to room.listing_name, room %>
+					
+						<p class="home-link"><b><%= link_to room.price, room_path(room) %> € - <%= link_to room.room_type, room_path(room) %> - <%= link_to pluralize(room.bed_room, 'lit'), room_path(room) %></b><br>
+						<%= link_to room.listing_name, room_path(room) %>
+						</p>
+					
 				</div>
 			</div>
 		</div>
@@ -80,3 +86,4 @@
 
 
 </script>
+
